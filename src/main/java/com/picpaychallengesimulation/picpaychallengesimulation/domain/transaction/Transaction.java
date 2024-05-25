@@ -4,16 +4,12 @@ import com.picpaychallengesimulation.picpaychallengesimulation.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity(name="transactions")
 @Table(name="transactions")
-@Getter
-@Setter
 @AllArgsConstructor
 @EqualsAndHashCode(of="id")
 public class Transaction {
@@ -30,5 +26,48 @@ public class Transaction {
     @JoinColumn(name="receiver_id")
     @ManyToOne
     private User receiver;
+
     private LocalDateTime timestemp;
+
+    // Getters
+    public Long getId() {
+        return id;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public User getSender() {
+        return sender;
+    }
+
+    public User getReceiver() {
+        return receiver;
+    }
+
+    public LocalDateTime getTimestemp() {
+        return timestemp;
+    }
+
+    // Setters
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+
+    public void setReceiver(User receiver) {
+        this.receiver = receiver;
+    }
+
+    public void setTimestemp(LocalDateTime timestemp) {
+        this.timestemp = timestemp;
+    }
 }
