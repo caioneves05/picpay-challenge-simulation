@@ -1,5 +1,6 @@
 package com.picpaychallengesimulation.picpaychallengesimulation.domain.user;
 
+import com.picpaychallengesimulation.picpaychallengesimulation.dtos.UserDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -29,6 +30,15 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private UserType userType;
+
+    public User(UserDTO data) {
+        this.firstName = data.firstName();
+        this.lastName = data.lastName();
+        this.document = data.document();
+        this.email = data.email();
+        this.password = data.password();
+        this.userType = data.userType();
+    }
 
     // Getters
     public Long getId() {
