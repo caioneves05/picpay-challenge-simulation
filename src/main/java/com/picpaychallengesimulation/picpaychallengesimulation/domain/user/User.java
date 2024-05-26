@@ -4,12 +4,14 @@ import com.picpaychallengesimulation.picpaychallengesimulation.dtos.UserDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
 @Entity(name="Users")
 @Table(name="users")
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(of="id")
 public class User {
     @Id
@@ -38,6 +40,7 @@ public class User {
         this.email = data.email();
         this.password = data.password();
         this.userType = data.userType();
+        this.balance = data.balance();
     }
 
     // Getters

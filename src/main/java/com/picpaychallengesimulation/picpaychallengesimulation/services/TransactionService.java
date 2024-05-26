@@ -21,6 +21,9 @@ public class TransactionService {
     private UserService userService;
 
     @Autowired
+    private NotificationService notificationService;
+
+    @Autowired
     private TransactionRepository transactionRepository;
 
     @Autowired
@@ -29,7 +32,7 @@ public class TransactionService {
     @Value("${url.authorization}")
     private String urlAuthorization;
 
-    public void createTransaction(TransactionDTO transaction) throws Exception {
+    public Transaction createTransaction(TransactionDTO transaction) throws Exception {
 
         User sender = this.userService.findUserById(transaction.senderId());
 
@@ -55,6 +58,11 @@ public class TransactionService {
         this.transactionRepository.save(newTransaction);
         this.userService.saveUser(sender);
         this.userService.saveUser(receiver);
+
+        this.notificationService.sendNotification(sender,"Transaction created successfully.");
+        this.notificationService.sendNotification(receiver,"Transaction received successfully.");
+
+        return newTransaction;
         
     }
 
